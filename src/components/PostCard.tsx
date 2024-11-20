@@ -1,5 +1,6 @@
 import { memo } from "react";
 import useStore from "../store/useStore";
+import NoImage from "./NoImage";
 
 interface PostCardProps {
   id: number;
@@ -14,20 +15,21 @@ const PostCard: React.FC<PostCardProps> = ({
   author,
   content,
   image,
-  liked
+  liked,
 }) => {
   const toggleLike = useStore((state) => state.toggleLike);
-
   return (
     <div className="bg-white dark:bg-gray-800 rounded-md shadow-md p-4 mb-4">
       <h2 className="font-bold text-lg">{author}</h2>
       <p className="my-2">{content}</p>
-      {image && (
+      {image ? (
         <img
           src={image}
           alt="Post"
           className="w-full h-96 object-cover mb-2 rounded"
         />
+      ) : (
+        <NoImage className="w-full h-96 mb-2 rounded" />
       )}
       <button
         onClick={() => toggleLike(id)}
