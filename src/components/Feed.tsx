@@ -15,6 +15,7 @@ const Feed: React.FC = () => {
           content={post.content}
           image={post.image}
           liked={post.liked}
+          bookMarked={post.bookMarked}
         />
       ))}
     </div>
