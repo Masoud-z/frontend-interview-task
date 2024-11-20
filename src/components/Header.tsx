@@ -1,4 +1,5 @@
 import { useLayoutEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header: React.FC = () => {
   //Check if dark mode is enabled in local storage or set it according to user's system preference
@@ -39,6 +40,28 @@ const Header: React.FC = () => {
   return (
     <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
       <h1 className="text-xl font-bold">Social Feed</h1>
+      <div className="flex justify-center items-center gap-2">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `bg-gray-700 px-4 py-2 rounded-md border border-solid border-transparent ${
+              isActive && "border border-yellow-300"
+            }`
+          }
+        >
+          Feeds
+        </NavLink>
+        <NavLink
+          to="/bookmarks"
+          className={({ isActive }) =>
+            `bg-gray-700 px-4 py-2 rounded-md border border-solid border-transparent ${
+              isActive && "border border-yellow-300"
+            }`
+          }
+        >
+          Bookmarks
+        </NavLink>
+      </div>
       <button
         onClick={toggleDarkMode}
         className="bg-gray-700 px-4 py-2 rounded-md"

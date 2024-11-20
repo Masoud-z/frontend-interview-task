@@ -1,7 +1,7 @@
-import PostCard from "./PostCard";
-import useStore from "../store/useStore";
+import PostCard from "../../components/PostCard";
+import useStore from "../../store/useStore";
 
-const Feed: React.FC = () => {
+export const Feed: React.FC = () => {
   const posts = useStore((state) => state.posts);
 
   return (
@@ -22,4 +22,4 @@ const Feed: React.FC = () => {
   );
 };
 
-export default Feed;
+
