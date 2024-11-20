@@ -1,4 +1,4 @@
-import PostCard from "../../components/PostCard";
+import PostCard from "../../components/Feed/PostCard";
 import useStore from "../../store/useStore";
 
 export const BookMarks: React.FC = () => {

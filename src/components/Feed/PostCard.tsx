@@ -1,6 +1,7 @@
-import useStore from "../store/useStore";
-import NoImage from "./NoImage";
-import { Post } from "../core/dto/Post";
+import { Post } from "../../core/dto/Post";
+import useStore from "../../store/useStore";
+import NoImage from "../core/NoImage/NoImage";
+import ReportModal from "./ReportModal";
 
 interface PostCardProps extends Post {}
 
@@ -30,7 +31,7 @@ const PostCard: React.FC<PostCardProps> = ({
       <div className="flex justify-start items-center gap-2">
         <button
           onClick={() => toggleLike(id)}
-          className={`px-4 py-2 w-20 rounded ${
+          className={`px-4 transition delay-100 ease-linear py-2 w-20 rounded border border-solid border-transparent ${
             liked ? "bg-red-500 text-white" : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
@@ -38,7 +39,7 @@ const PostCard: React.FC<PostCardProps> = ({
         </button>
         <button
           onClick={() => toggleBookmark(id)}
-          className={`px-4 py-2 w-32 rounded ${
+          className={`px-4 transition delay-100 ease-linear py-2 w-32 rounded border border-solid border-transparent ${
             bookMarked
               ? "bg-lime-500 text-white"
               : "bg-gray-200 dark:bg-gray-700"
@@ -46,6 +47,7 @@ const PostCard: React.FC<PostCardProps> = ({
         >
           {bookMarked ? "Unbookmark" : "bookMark"}
         </button>
+        <ReportModal postId={id} />
       </div>
     </div>
   );

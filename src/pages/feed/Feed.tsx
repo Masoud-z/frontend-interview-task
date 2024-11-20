@@ -1,5 +1,5 @@
-import PostCard from "../../components/PostCard";
 import useStore from "../../store/useStore";
+import PostCard from "../../components/Feed/PostCard";
 
 export const Feed: React.FC = () => {
   const posts = useStore((state) => state.posts);
@@ -21,5 +21,3 @@ export const Feed: React.FC = () => {
     </div>
   );
 };
-
-
