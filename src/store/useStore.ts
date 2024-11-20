@@ -2,16 +2,21 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Post } from "../core/dto/Post";
+import { Toast, ToastType } from "../core/dto/Toast";
 
 interface StoreState {
   posts: Post[];
+  toasts: Toast[];
   toggleLike: (id: number) => void;
   toggleBookmark: (id: number) => void;
+  addToast: (message: string, type: ToastType) => void;
+  removeToast: (id: number) => void;
 }
 
 const useStore = create<StoreState, [["zustand/persist", { posts: Post[] }]]>(
   persist(
     (set, get) => ({
+      toasts: [],
       posts: [
         {
           id: 1,
@@ -161,14 +166,38 @@ const useStore = create<StoreState, [["zustand/persist", { posts: Post[] }]]>(
           ),
         })),
       toggleBookmark: (id: number) =>
-        set(() => ({
-          posts: get().posts.map((post) =>
-            post.id === id ? { ...post, bookMarked: !post.bookMarked } : post
-          ),
+        set((state) => ({
+          posts: get().posts.map((post) => {
+            if (post.id === id) {
+              if (!post.bookMarked) {
+                state.addToast("Post bookmarked!", "success");
+              }
+              return { ...post, bookMarked: !post.bookMarked };
+            }
+            return post;
+          }),
+        })),
+      addToast: (message: string, type: ToastType) =>
+        set((state) => {
+          const toast: Toast = {
+            id: Date.now() * Math.random(),
+            message,
+            type,
+          };
+          const newToasts = [...state.toasts, toast];
+          if (newToasts.length > 4) newToasts.shift();
+          setTimeout(() => {
+            state.removeToast(toast.id);
+          }, 3500);
+          return { toasts: newToasts };
+        }),
+      removeToast: (id: number) =>
+        set((state) => ({
+          toasts: state.toasts.filter((toast) => toast.id !== id),
         })),
     }),
     {
-      name: "posts-storage", 
+      name: "posts-storage",
       partialize: (state) => ({ posts: state.posts }), // Persist only the posts}
     }
   )

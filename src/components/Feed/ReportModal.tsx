@@ -1,14 +1,17 @@
 import { useState } from "react";
 import Modal from "../core/Modal/Modal";
+import useStore from "../../store/useStore";
 
 interface ReportModalProps {
   postId: number;
 }
 
 const ReportModal: React.FC<ReportModalProps> = ({ postId }) => {
+  const addToast = useStore((state) => state.addToast);
   const [openModal, setOpenModal] = useState(false);
   function reportPost() {
     console.log("Reported post with id: ", postId);
+    addToast("Post has been reported", "success");
     setOpenModal(false);
   }
 
