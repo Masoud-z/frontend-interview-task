@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { PostDto } from "../core/dto/Post";
-import { Toast, ToastType } from "../core/dto/Toast";
+import { ToastDto, ToastType } from "../core/dto/Toast";
 
 interface StoreState {
   posts: PostDto[];
-  toasts: Toast[];
+  toasts: ToastDto[];
   toggleLike: (id: number) => void;
   toggleBookmark: (id: number) => void;
   addToast: (message: string, type: ToastType) => void;
@@ -178,7 +178,7 @@ const useStore = create<StoreState, [["zustand/persist", { posts: PostDto[] }]]>
         })),
       addToast: (message: string, type: ToastType) =>
         set((state) => {
-          const toast: Toast = {
+          const toast: ToastDto = {
             id: Date.now() * Math.random(),
             message,
             type,

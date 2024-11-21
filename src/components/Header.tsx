@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Header: React.FC = () => {
-  //Check if dark mode is enabled in local storage or set it according to user's system preference
+  //Check if dark mode has been set in local storage or set it according to user's system preference
   function getInitialDarkMode() {
     const localStorageDarkMode = localStorage.getItem("darkMode");
     const isDarkMode = localStorageDarkMode
