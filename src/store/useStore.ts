@@ -1,11 +1,10 @@
-// src/store/useStore.ts
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Post } from "../core/dto/Post";
+import { PostDto } from "../core/dto/Post";
 import { Toast, ToastType } from "../core/dto/Toast";
 
 interface StoreState {
-  posts: Post[];
+  posts: PostDto[];
   toasts: Toast[];
   toggleLike: (id: number) => void;
   toggleBookmark: (id: number) => void;
@@ -13,7 +12,7 @@ interface StoreState {
   removeToast: (id: number) => void;
 }
 
-const useStore = create<StoreState, [["zustand/persist", { posts: Post[] }]]>(
+const useStore = create<StoreState, [["zustand/persist", { posts: PostDto[] }]]>(
   persist(
     (set, get) => ({
       toasts: [],

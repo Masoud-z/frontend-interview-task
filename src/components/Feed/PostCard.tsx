@@ -1,9 +1,10 @@
-import { Post } from "../../core/dto/Post";
+import React from "react";
+import { PostDto } from "../../core/dto/Post";
 import useStore from "../../store/useStore";
 import NoImage from "../core/NoImage/NoImage";
 import ReportModal from "./ReportModal";
 
-interface PostCardProps extends Post {}
+interface PostCardProps extends PostDto {}
 
 const PostCard: React.FC<PostCardProps> = ({
   id,
@@ -45,7 +46,7 @@ const PostCard: React.FC<PostCardProps> = ({
               : "bg-gray-200 dark:bg-gray-700"
           }`}
         >
-          {bookMarked ? "Unbookmark" : "bookMark"}
+          {bookMarked ? "Unbookmark" : "Bookmark"}
         </button>
         <ReportModal postId={id} />
       </div>
