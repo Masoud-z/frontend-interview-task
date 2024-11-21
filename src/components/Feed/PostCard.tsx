@@ -38,7 +38,6 @@ const PostCard: React.FC<PostCardProps> = ({
           }
           onClick={() => toggleLike(id)}
         />
-
         <Button
           title={bookMarked ? "Unbookmark" : "Bookmark"}
           className={

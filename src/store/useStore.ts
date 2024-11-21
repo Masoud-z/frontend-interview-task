@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 import { PostDto } from "../core/dto/Post";
 import { ToastDto, ToastType } from "../core/dto/Toast";
 
-interface StoreState {
+export interface StoreState {
   posts: PostDto[];
   toasts: ToastDto[];
   toggleLike: (id: number) => void;
